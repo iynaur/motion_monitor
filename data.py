@@ -46,17 +46,20 @@ def pick(s_str, e_str, i):
             t.append(idx)
     return v, t
 
+def moving_average(interval, windowsize):
+    window = np.ones(int(windowsize)) / float(windowsize)
+    re = np.convolve(interval, window, 'same')
+    return re
+
 allshow = 0
-if 0: 
+if 1: 
     for i in range(6):
         plt.title(titles[i])
         
-        
-
-        plt.title(titles[i])
+        data[i] = moving_average(data[i], 7)
         plt.plot(data[i])
 
-        v, t = pick("15:35:30", "15:36:30", i)
+        v, t = pick("15:40:30", "15:45:30", i)
         plt.plot(t, v)
 
         curtime = ""
@@ -70,12 +73,12 @@ if 0:
 
         plt.show()
 else:
-    start = 400500
-    length = 1000
+    start = 450000
+    length = 500
     y = data[0][start:start+ length]
     yy=fft(y)                     #快速傅里叶变换
-    yreal = yy.real               # 获取实数部分
-    yimag = yy.imag               # 获取虚数部分
+    # yreal = yy.real               # 获取实数部分
+    # yimag = yy.imag               # 获取虚数部分
 
     yf=abs(fft(y))                # 取绝对值
     yf1=abs(fft(y))/len(y)           #归一化处理
@@ -90,7 +93,7 @@ else:
 
 
     plt.show()
-
+exit(0)
 tot = [data[0][i]**2 + data[1][i]**2 + data[2][i]**2 for i in range(len(data[0]))]
 plt.plot(tot)
 for idx in range(len(data[i])):
