@@ -51,15 +51,32 @@ def moving_average(interval, windowsize):
     re = np.convolve(interval, window, 'same')
     return re
 
+def atitude(a, duration):
+    res = a[:]
+    n = len(a)
+    for i in range(len(a)):
+        mi = max(0, i - duration)
+        ma = min(n-1, i + duration)
+        res[i] = max(a[mi:ma+1]) - min(a[mi:ma+1])
+    return res
+
+
+
+if 0:
+    for i in range(6):
+        data[i] = moving_average(data[i], 10)
+
+
 allshow = 0
 if 1: 
     for i in range(6):
+        i = (i + 3) % 6
         plt.title(titles[i])
         
-        data[i] = moving_average(data[i], 7)
-        plt.plot(data[i])
+        
+        plt.plot(atitude(data[i], 20))
 
-        v, t = pick("15:40:30", "15:45:30", i)
+        v, t = pick("14:50:30", "16:14:30", i)
         plt.plot(t, v)
 
         curtime = ""
@@ -74,7 +91,7 @@ if 1:
         plt.show()
 else:
     start = 450000
-    length = 500
+    length = 1000
     y = data[0][start:start+ length]
     yy=fft(y)                     #快速傅里叶变换
     # yreal = yy.real               # 获取实数部分
@@ -82,12 +99,12 @@ else:
 
     yf=abs(fft(y))                # 取绝对值
     yf1=abs(fft(y))/len(y)           #归一化处理
-    yf2 = yf1[range(int(len(y)/2))]  #由于对称性，只取一半区间
+    yf2 = yf1[(int(len(y)/2)):]  #由于对称性，只取一半区间
 
     xf = np.arange(len(y))        # 频率
     xf1 = xf
-    xf2 = xf[range(int(len(y)/2))]  #取一半区间
-    plt.plot(xf,yf,'r')
+    xf2 = xf[(int(len(y)/2)):]  #取一半区间
+    plt.plot(xf2,yf2,'r')
     mng = plt.get_current_fig_manager()
     mng.window.state('zoomed') 
 
