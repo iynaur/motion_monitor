@@ -46,13 +46,13 @@ def pick(s_str, e_str, i):
             t.append(idx)
     return v, t
 
-def moving_average(interval, windowsize):
+def moving_average(interval, windowsize): # return array
     window = np.ones(int(windowsize)) / float(windowsize)
     re = np.convolve(interval, window, 'same')
-    return re
+    return re # return array
 
 def atitude(a, duration):
-    res = a[:]
+    res = a.copy() # array slice is different!!!
     n = len(a)
     for i in range(len(a)):
         mi = max(0, i - duration)
@@ -62,9 +62,9 @@ def atitude(a, duration):
 
 
 
-if 0:
+if 1:
     for i in range(6):
-        data[i] = moving_average(data[i], 10)
+        data[i] = moving_average(data[i], 10) # return array
 
 
 allshow = 0
