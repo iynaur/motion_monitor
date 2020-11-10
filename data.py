@@ -62,22 +62,26 @@ def atitude(a, duration):
 
 
 
-if 1:
+if 0:
     for i in range(6):
         data[i] = moving_average(data[i], 10) # return array
 
 
+daisu_timeidx = [250000, 
+550000] # weird freq
+
 allshow = 0
-if 1: 
+if 0: 
     for i in range(6):
-        i = (i + 3) % 6
+        # i = (i + 3) % 6
         plt.title(titles[i])
         
         
-        plt.plot(atitude(data[i], 20))
+        # plt.plot(atitude(data[i], 20))
+        plt.plot((data[i]))
 
-        v, t = pick("14:50:30", "16:14:30", i)
-        plt.plot(t, v)
+        # v, t = pick("14:50:30", "16:14:30", i)
+        # plt.plot(t, v)
 
         curtime = ""
         for idx in range(len(data[i])):
@@ -90,26 +94,29 @@ if 1:
 
         plt.show()
 else:
-    start = 450000
-    length = 1000
-    y = data[0][start:start+ length]
-    yy=fft(y)                     #快速傅里叶变换
-    # yreal = yy.real               # 获取实数部分
-    # yimag = yy.imag               # 获取虚数部分
+    
+    start = 246000
+    while start < 250000:
+        start += 100
+        length = 128
+        y = data[0][start:start+ length]
+        yy=fft(y)                     #快速傅里叶变换
+        # yreal = yy.real               # 获取实数部分
+        # yimag = yy.imag               # 获取虚数部分
 
-    yf=abs(fft(y))                # 取绝对值
-    yf1=abs(fft(y))/len(y)           #归一化处理
-    yf2 = yf1[(int(len(y)/2)):]  #由于对称性，只取一半区间
+        yf=abs(fft(y))                # 取绝对值
+        yf1=abs(fft(y))/len(y)           #归一化处理
+        yf2 = yf1[1 : (int(len(y)/2))]  #由于对称性，只取一半区间
 
-    xf = np.arange(len(y))        # 频率
-    xf1 = xf
-    xf2 = xf[(int(len(y)/2)):]  #取一半区间
-    plt.plot(xf2,yf2,'r')
-    mng = plt.get_current_fig_manager()
-    mng.window.state('zoomed') 
+        xf = np.arange(len(y))        # 频率
+        xf1 = xf
+        xf2 = xf[1 : (int(len(y)/2)):]  #取一半区间
+        plt.plot(xf2,yf2,'r')
+        mng = plt.get_current_fig_manager()
+        mng.window.state('zoomed') 
 
 
-    plt.show()
+        plt.show()
 exit(0)
 tot = [data[0][i]**2 + data[1][i]**2 + data[2][i]**2 for i in range(len(data[0]))]
 plt.plot(tot)
