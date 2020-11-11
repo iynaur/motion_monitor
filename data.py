@@ -95,18 +95,25 @@ if 0:
         plt.show()
 else:
     
-    start = 246000
-    while start < 250000:
-        start += 100
+    start = 458000
+    while start < 570000:
+        start += 10000
         length = 128
-        y = data[0][start:start+ length]
-        yy=fft(y)                     #快速傅里叶变换
-        # yreal = yy.real               # 获取实数部分
-        # yimag = yy.imag               # 获取虚数部分
+        tot = []
+        for i in range(3):
+            y = data[i + 3][start:start+ length]
+            yy=fft(y)                     #快速傅里叶变换
+            # yreal = yy.real               # 获取实数部分
+            # yimag = yy.imag               # 获取虚数部分
 
-        yf=abs(fft(y))                # 取绝对值
-        yf1=abs(fft(y))/len(y)           #归一化处理
-        yf2 = yf1[1 : (int(len(y)/2))]  #由于对称性，只取一半区间
+            yf=abs(fft(y))                # 取绝对值
+            yf1=abs(fft(y))/len(y)           #归一化处理
+            yf2 = yf1[1 : (int(len(y)/2))]  #由于对称性，只取一半区间
+
+            if len(tot) == 0: 
+                tot = yf2 
+            else: 
+                tot = tot + yf2
 
         xf = np.arange(len(y))        # 频率
         xf1 = xf
