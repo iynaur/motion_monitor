@@ -6,7 +6,7 @@
 //#include "table_fft.h"
 
 
-#define algor_N	500
+#define algor_N	1000
 #define algor_M 25
 #define algor_Q 20
 
