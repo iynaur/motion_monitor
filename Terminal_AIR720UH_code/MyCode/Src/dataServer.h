@@ -6,7 +6,7 @@ extern "C" {
 
 void initDataServer(const char* filename);
 
-bool getData(int* dat);
+int getData(int* dat);
 
 void putData(float a, float b);
 void dump();
