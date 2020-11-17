@@ -29,12 +29,11 @@ u8 Get_Machine_Status(void)
         short gyrox=dat[3],gyroy=dat[4],gyroz=dat[5];	//陀螺仪原始数据
 
         float value_stand, value_motion;
-        u8 int_state = 0;
         u8 status = STATE_NONE;
 
 
         //	ICM20689_Get_INT_Status(&int_state);
-        if(int_state == 1)
+        if(1)
         {
 
             //debug_print("ax is %d,ay is %d,az is %d\r\n",aacx,aacy,aacz);
@@ -62,6 +61,7 @@ u8 Get_Machine_Status(void)
 
                 value_stand = optimi(ax_in, ay_in,az_in);//得到判断静止状态的值
                 value_motion = optimi(gx_in,gy_in,gz_in);//得到新算法的值
+                putData(value_stand, value_motion);
 
                 //新算法判断状态
                 if(value_motion>0.42f)
@@ -71,7 +71,7 @@ u8 Get_Machine_Status(void)
                 else
             {
                     //debug_print("value_stand is %f.\r\n",value_stand);
-                    if(value_stand>0.00376f)//开始是0.00194
+                    if(value_stand>0.02f)//开始是0.00194
                     {
                     status = STATE_STANDBY;//待机状态
                     }
