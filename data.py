@@ -71,9 +71,9 @@ daisu_timeidx = [250000,
 550000] # weird freq
 
 allshow = 0
-if 0: 
-    for i in range(6):
-        # i = (i + 3) % 6
+if 1: 
+    for i in range(3):
+        #i = (i + 3) % 6
         plt.title(titles[i])
         
         
@@ -83,16 +83,16 @@ if 0:
         # v, t = pick("14:50:30", "16:14:30", i)
         # plt.plot(t, v)
 
-        curtime = ""
-        for idx in range(len(data[i])):
-            if timestamp[idx] != curtime and timecnt(timestamp[idx]) % 600 == 0:
-                plt.text(idx, data[i][idx], timestamp[idx])
-                curtime = timestamp[idx]
-        mng = plt.get_current_fig_manager()
-        mng.window.state('zoomed') 
+    curtime = ""
+    for idx in range(len(data[i])):
+        if timestamp[idx] != curtime and timecnt(timestamp[idx]) % 600 == 0:
+            plt.text(idx, data[i][idx], timestamp[idx])
+            curtime = timestamp[idx]
+    mng = plt.get_current_fig_manager()
+    mng.window.state('zoomed') 
 
 
-        plt.show()
+    plt.show()
 else:
     
     start = 458000

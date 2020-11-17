@@ -41,4 +41,15 @@ float optimi(float* grrx_in, float* grry_in,float* grrz_in);
 float algor(float* arrx_in, float* arry_in,float* arrz_in);
 float add_algor(float* add_arrx_in, float* add_arry_in,float* add_arrz_in);
 float find_motion(float* Pitch,float* Yaw);
+
+typedef enum
+{
+    STATE_NONE = 0x00,
+    STATE_MOTIONLESS,
+    STATE_STANDBY,
+    STATE_MOTION,
+    STATE_DORMANT,
+    STATE_DISMOUNT,
+    STATE_ERROR
+}MACHINE_STATUS;
 #endif

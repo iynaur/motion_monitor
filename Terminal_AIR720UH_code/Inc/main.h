@@ -28,25 +28,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32l4xx_ll_adc.h"
-#include "stm32l4xx.h"
-#include "stm32l4xx_ll_i2c.h"
-#include "stm32l4xx_ll_iwdg.h"
-#include "stm32l4xx_ll_lpuart.h"
-#include "stm32l4xx_ll_rcc.h"
-#include "stm32l4xx_ll_crs.h"
-#include "stm32l4xx_ll_bus.h"
-#include "stm32l4xx_ll_system.h"
-#include "stm32l4xx_ll_exti.h"
-#include "stm32l4xx_ll_cortex.h"
-#include "stm32l4xx_ll_utils.h"
-#include "stm32l4xx_ll_pwr.h"
-#include "stm32l4xx_ll_dma.h"
-#include "stm32l4xx_ll_rtc.h"
-#include "stm32l4xx_ll_spi.h"
-#include "stm32l4xx_ll_tim.h"
-#include "stm32l4xx_ll_usart.h"
-#include "stm32l4xx_ll_gpio.h"
+
 
 #if defined(USE_FULL_ASSERT)
 #include "stm32_assert.h"
@@ -63,37 +45,27 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-typedef int32_t  s32;
-typedef int16_t s16;
-typedef int8_t  s8;
+typedef int  s32;
+typedef short  s16;
+typedef char  s8;
 
-typedef const int32_t sc32;  /*!< Read Only */
-typedef const int16_t sc16;  /*!< Read Only */
-typedef const int8_t sc8;   /*!< Read Only */
+typedef const s32 sc32;  /*!< Read Only */
+typedef const s16 sc16;  /*!< Read Only */
+typedef const s8 sc8;   /*!< Read Only */
 
-typedef __IO int32_t  vs32;
-typedef __IO int16_t  vs16;
-typedef __IO int8_t   vs8;
 
-typedef __I int32_t vsc32;  /*!< Read Only */
-typedef __I int16_t vsc16;  /*!< Read Only */
-typedef __I int8_t vsc8;   /*!< Read Only */
 
-typedef uint32_t  u32;
-typedef uint16_t u16;
-typedef uint8_t  u8;
 
-typedef const uint32_t uc32;  /*!< Read Only */
-typedef const uint16_t uc16;  /*!< Read Only */
-typedef const uint8_t uc8;   /*!< Read Only */
 
-typedef __IO uint32_t  vu32;
-typedef __IO uint16_t vu16;
-typedef __IO uint8_t  vu8;
+typedef unsigned long long  u32;
+typedef unsigned short u16;
+typedef unsigned char  u8;
 
-typedef __I uint32_t vuc32;  /*!< Read Only */
-typedef __I uint16_t vuc16;  /*!< Read Only */
-typedef __I uint8_t vuc8;   /*!< Read Only */
+typedef const u32 uc32;  /*!< Read Only */
+typedef const u16 uc16;  /*!< Read Only */
+typedef const u8 uc8;   /*!< Read Only */
+
+
 
 /* USER CODE END ET */
 
