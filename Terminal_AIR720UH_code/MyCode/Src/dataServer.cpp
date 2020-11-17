@@ -40,7 +40,7 @@ void initDataServer(const char* filename){
 
 int id = 0;
 
-int getData(int* dat){
+bool getData(int* dat){
     if (id >= datas.size()) return 0;
     memcpy(dat, datas[id++].data(), 6*sizeof(int));
     return 1;
