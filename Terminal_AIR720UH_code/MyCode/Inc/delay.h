@@ -1,0 +1,18 @@
+
+#ifndef __DELAY_H
+#define __DELAY_H 			   
+#include "main.h"
+//////////////////////////////////////////////////////////////////////////////////	 
+////////////////////////////////////////////////////////////////////////////////// 
+	 
+void delay_init(void);
+void delay_us(u32 nus);
+//void delay_ms(u16 nms);
+void delay_ms(u32 nms);
+void delay_s(u16 s);
+//void HAL_Delay(uint32_t Delay);
+
+#endif
+
+
+
